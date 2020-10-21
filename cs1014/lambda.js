@@ -24,8 +24,10 @@ let handler = async (event) => {
         return axios.get(filterUrl, config);
     })
     .then((response) => {
+        let caseBean = response.data.records[0]
         return {
-            caseStatus: response.data.records[0].status
+            id: caseBean.id,
+            status: caseBean.status
         };
     })
     .catch((error) => {

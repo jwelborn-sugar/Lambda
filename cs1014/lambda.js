@@ -1,8 +1,9 @@
 const axios = require('axios');
-const querystring = require('querystring');
 
-handler = async (event) => {
-    return axios.post('https://cs-1014.msqa.sugarcrm.com/rest/v11_10/oauth2/token', {
+let handler = async (event) => {
+    let baseUrl = process.env.sugarUrl
+    
+    return axios.post(`${baseUrl}/rest/v11_10/oauth2/token`, {
         grant_type: 'password',
         client_id: 'sugar',
         client_secret: '',
@@ -19,7 +20,7 @@ handler = async (event) => {
             headers: { Authorization: `Bearer ${response.data.access_token}`},
             params: queryParams
         }
-        let filterUrl = encodeURI(`https://cs-1014.msqa.sugarcrm.com/rest/v11_10/Cases?filter[0][case_number]=${event.caseNumber}`);
+        let filterUrl = encodeURI(`${baseUrl}/rest/v11_10/Cases?filter[0][case_number]=${event.caseNumber}`);
         return axios.get(filterUrl, config);
     })
     .then((response) => {
@@ -34,9 +35,5 @@ handler = async (event) => {
         };
     });
 };
-
-(async () => {
-    console.log(await handler({caseNumber: 20}));
-})();
 
 exports.handler = handler;

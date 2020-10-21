@@ -6,8 +6,8 @@ handler = async (event) => {
         grant_type: 'password',
         client_id: 'sugar',
         client_secret: '',
-        username: 'SugarCRMSupport',
-        password: 'zTErNQpeW7Tgw-Q',
+        username: process.env.sugarUsername,
+        password: process.env.sugarPass,
         platform: 'base'
     })
     .then((response) => {

@@ -40,7 +40,6 @@ let handler = async (event) => {
                 status: caseBean.status
             }
         }
-
         console.log({
             status: statusCode,
             body: body

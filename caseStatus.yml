@@ -22,7 +22,7 @@ Resources:
       CompatibleRuntimes:
         - nodejs12.x
       Content:
-        S3Bucket: !Sub 'sugarserve-lambda'
+        S3Bucket: !Sub 'sugarserve-lambda-${AWS::Region}'
         S3Key: 'caseStatus/nodejs.zip'
 
   CaseStatusLambda:
@@ -42,7 +42,7 @@ Resources:
           sugarPass: !Ref SugarPassword
           sugarUrl: !Ref SugarUrl
       Code:
-        S3Bucket: 'sugarserve-lambda'
+        S3Bucket: !Sub 'sugarserve-lambda-${AWS::Region}'
         S3Key: 'caseStatus/caseStatus.zip'
 
   CaseStatusLambdaExecutionRole:

@@ -1,8 +1,14 @@
 const axios = require('axios');
 
+const HttpStatus = {
+    ok: 200,
+    notFound: 404,
+    error: 500
+}
+
+const baseUrl = process.env.sugarUrl;
+
 let handler = async (event) => {
-    let baseUrl = process.env.sugarUrl
-    
     return axios.post(`${baseUrl}/rest/v11_10/oauth2/token`, {
         grant_type: 'password',
         client_id: 'sugar',
@@ -25,14 +31,29 @@ let handler = async (event) => {
     })
     .then((response) => {
         let caseBean = response.data.records[0]
+        let statusCode = HttpStatus.notFound;
+        let body = {};
+        if (caseBean) {
+            statusCode = HttpStatus.ok
+            body = {
+                id: caseBean.id,
+                status: caseBean.status
+            }
+        }
+
+        console.log({
+            status: statusCode,
+            body: body
+        });
         return {
-            id: caseBean.id,
-            status: caseBean.status
+            status: statusCode,
+            body: body
         };
     })
     .catch((error) => {
         console.error(error);
         return {
+            status: HttpStatus.error,
             error: error
         };
     });

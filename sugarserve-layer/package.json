@@ -1,0 +1,7 @@
+{
+  "name": "sugarserve-layer",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
+}

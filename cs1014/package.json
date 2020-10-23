@@ -1,0 +1,23 @@
+{
+  "name": "cs1014",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lambda.js",
+  "dependencies": {
+    "aws-sdk": "^2.775.0",
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-standard": "^15.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
